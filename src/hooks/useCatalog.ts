@@ -8,5 +8,12 @@ export function useCatalog() {
   useEffect(() => {
     void load()
   }, [load])
-  return state
+
+  return {
+    ...state,
+    ready: state.status === 'ready',
+    // Atajos a los settings más usados.
+    modelo: state.settings.modelo,
+    mayoristaDesde: state.settings.mayoristaDesde,
+  }
 }

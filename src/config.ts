@@ -1,8 +1,11 @@
 /**
  * ============================================================
- *  CONFIGURACIÓN DEL NEGOCIO
- *  Todo lo que el dueño va a querer cambiar está en este archivo.
- *  Productos, stock y precios: ver src/data/products.ts y src/data/pricing.ts
+ *  CONFIGURACIÓN FIJA DEL NEGOCIO
+ *  Esto se cambia editando el código y volviendo a publicar.
+ *
+ *  Lo que el dueño edita solo desde el panel (/admin) NO está acá:
+ *  productos, stock, precios, escala por cantidad, horario y zonas
+ *  viven en Supabase. Ver src/data/ para los valores por defecto.
  * ============================================================
  */
 
@@ -14,12 +17,6 @@ export const WHATSAPP_NUMBER = '5491100000000' // TODO: reemplazar
 
 /** Link al perfil de Instagram. Si queda vacío, se oculta el botón. */
 export const INSTAGRAM_URL = '' // TODO
-
-/** Localidades a las que se envía. Aparecen en el formulario y en la sección de zonas. */
-export const ZONAS_ENVIO = ['Vicente López', 'San Isidro', 'Tigre', 'San Fernando', 'Pilar'] // TODO: confirmar
-
-/** Horario de envíos (hora de Argentina, formato 24 hs "HH:MM"). */
-export const HORARIO_ENVIOS = { desde: '15:00', hasta: '22:00' } // TODO: confirmar
 
 /** Zona horaria usada para calcular si los envíos están abiertos. */
 export const TIMEZONE = 'America/Argentina/Buenos_Aires'
