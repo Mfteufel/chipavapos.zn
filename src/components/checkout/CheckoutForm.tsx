@@ -1,13 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMemo, useState, type ReactNode } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
-import {
-  BUSINESS_NAME,
-  METODOS_PAGO,
-  PUNTOS_RETIRO,
-  WHATSAPP_NUMBER,
-  ZONAS_ENVIO,
-} from '../../config'
+import { BUSINESS_NAME, METODOS_PAGO, PUNTOS_RETIRO, WHATSAPP_NUMBER } from '../../config'
+import { useCatalog } from '../../hooks/useCatalog'
 import type { DetailedLine } from '../../hooks/useCartSummary'
 import { makeCheckoutSchema, type CheckoutValues } from '../../lib/checkout'
 import { formatPrice } from '../../lib/format'
@@ -55,8 +50,9 @@ interface Props {
 }
 
 export function CheckoutForm({ lines, summary, modelo }: Props) {
+  const zonas = useCatalog().settings.zonas
   const hayRetiro = PUNTOS_RETIRO.length > 0
-  const schema = useMemo(() => makeCheckoutSchema(ZONAS_ENVIO, hayRetiro), [hayRetiro])
+  const schema = useMemo(() => makeCheckoutSchema(zonas, hayRetiro), [zonas, hayRetiro])
   const [waUrl, setWaUrl] = useState<string | null>(null)
 
   const {
@@ -154,7 +150,7 @@ export function CheckoutForm({ lines, summary, modelo }: Props) {
               {...register('localidad')}
             >
               <option value="">Elegí tu localidad</option>
-              {ZONAS_ENVIO.map((z) => (
+              {zonas.map((z) => (
                 <option key={z}>{z}</option>
               ))}
             </select>

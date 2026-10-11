@@ -23,7 +23,7 @@ const ART = [
 
 export function Hero() {
   const { tiers } = useCatalog()
-  const { open, label } = useShippingStatus()
+  const { open, label, ready: horarioListo } = useShippingStatus()
   const best = tiers.length ? Math.min(...tiers.map((t) => t.precioUnitario)) : null
   return (
     <section className="relative overflow-hidden px-4 pb-16 pt-28 sm:pt-32">
@@ -39,13 +39,15 @@ export function Hero() {
         >
           <p
             role="status"
-            className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/80 px-4 py-1.5 text-sm font-medium"
+            className={`inline-flex items-center gap-2 rounded-full border border-line bg-surface/80 px-4 py-1.5 text-sm font-medium transition-opacity ${
+              horarioListo ? 'opacity-100' : 'opacity-0'
+            }`}
           >
             <span
               aria-hidden
               className={`size-2.5 rounded-full ${open ? 'animate-pulse bg-green-400' : 'bg-amber-400'}`}
             />
-            {label}
+            {horarioListo ? label : '…'}
           </p>
           <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
             ELFBAR KING

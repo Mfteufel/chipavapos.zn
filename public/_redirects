@@ -1,0 +1,4 @@
+# La app es una SPA: /carrito, /faq, /admin, etc. no son archivos en el server.
+# Sin esta regla, entrar directo a una URL o refrescar da 404.
+# Formato de Netlify y Cloudflare Pages. Otros hosts: ver README.
+/*  /index.html  200

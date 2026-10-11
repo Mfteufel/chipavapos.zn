@@ -1,7 +1,13 @@
 /**
- * Catálogo. Para cambiar stock, precio o agregar sabores, editá este archivo.
- * Los componentes NO leen esto directo: pasan por src/services/productService.ts.
+ * Tipos del catálogo y valores por defecto para desarrollo sin base.
+ * En producción los productos viven en la tabla `products` de Supabase y se
+ * editan desde el panel. Los componentes NO leen esto directo: pasan por
+ * src/services/catalogService.ts.
  */
+
+/** Colores de acento disponibles. Un sabor nuevo necesita entrada en tailwind.config.ts y src/lib/accent.ts. */
+export const ACENTOS = ['frutilla', 'sandia', 'cereza'] as const
+export type Acento = (typeof ACENTOS)[number]
 
 export interface Product {
   id: string
@@ -16,11 +22,9 @@ export interface Product {
   esPromo: boolean
   /** Ruta de la imagen. Si no existe el archivo, se muestra un placeholder. */
   imagen: string
-  /** Color de acento (clave de Tailwind: frutilla | sandia | cereza). */
-  acento: 'frutilla' | 'sandia' | 'cereza'
+  /** Color de acento (clave de Tailwind). */
+  acento: Acento
 }
-
-export const MODELO = 'ELFBAR KING 40K Puffs'
 
 export const products: Product[] = [
   {
